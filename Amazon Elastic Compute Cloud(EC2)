@@ -1,0 +1,86 @@
+Amazon Elastic Compute Cloud(EC2):
+==================================
+
+//provides scalable computing capacity in the aws cloud. using ec2 eliminates need to invest in hardware up front
+//ec2 enables us to scale up and down to handle changes in requirements or spikes in popularity, reducing need to forecast traffic.
+
+// virtual computing servers are known as instances in ec2
+//Amazon machine image(AMI) is a template that consist all the software configuration req for the instance and we can choose this AMI in portal.
+//root device contains image used to boot the instance.
+//root device can either be Amazon Elastic Block Store(Amazon EBS) volume or an instance store Volume.
+
+// using AMI we can launch multiple instances at one go
+
+//instance type: hardware of host computer.
+
+*regardless of underlying hardware Amazon EC2 provides each instance with a consistent and predictable amt of CPU capacity
+
+
+
+** Amazon EFS-- elastic File Storage--this is a shared storage which can be connect to multiple instances
+** Amazon Emphemeral Storage-- the data stored in this storage will be available till the instance is running. if the instance is stopped then the data in Emphemeral storage is not available.
+**Amazon EBS--elastic Block storage--everything is storage in EBS and EBS is created for ec2 instances.--multi attach EBS can also be used-- we can attach multiple instances to one EBS
+**snapshot-- backup of the EBS volume.
+
+
+steps:
+1. choose AMI
+2. choose Instance Type
+3. configure Instance
+4. Add Storage
+5. Add Tags
+6. Configure Security Groups
+7. Add key-value pair
+8. Preview
+
+
+after creating make sure that instance is running and now we need to connect the instance to work on it.
+
+in order to connect we can use session manager, rdp and ec2 serial console.
+
+//to use rdp download the rdp file and open it you need to enter the password.
+// this password can be generated in the aws console by click get windows password and here we shd upload private key file and click on decrypt password
+
+-- to launch a webserver:
+we shd download either use apach2 or engines.
+--as we have already provided access to ssh , now we to provide access to the webserver in the instance.
+--Edit inbound rules to allow req protocols.
+--Now create some web page file (like .html file) in the instance and save it.
+-- now the browser of ur computer type the public ip add of instance and enter "/sampleName.html" it will check and display the results of html file.
+-- if we want to load web automatically while we enter public ip add then replace the filename.html to NewIndex.html
+
+
+---------------xxxxx---------
+
+//root volume of an instance would always be what mentioned in the instance storage(like EBS Volume).
+//Tags: it consist of case-sensitive key-value pairs.
+for eg, you could define a tag with key-Name and value= webserver
+- a copy of tag can be applied to volume, instances or both.
+Tags will be applied to all instances and volumes.
+
+//key-value Pair:
+a key pair will have public and private key and the instance will have public key we need to give private key to it while we're logging into the instance.
+
+
+** we can also launch the instance by copying the AMI.
+-- create an image of the instance(actions-> image and templates->create image)
+-- provide an Image name 
+-- it will automatically use the snapshot of the existing instance.. but we can add mode volume if we wanted.
+--save this file.
+
+-- to see this image go to AMI's page
+--select the AMI and click on launch and repeat the starting steps followed to create an instance. 
+--now, we can create another instance which already contains the info of the 1st instance.
+--no need to create key-value pair every single time we create copy of instances/servers.. we can use the key-value pair of the existing instance.
+--- this way we can create n no. of instances .
+
+
+*** so if we wanted to scale up and down the instance we will follow this way..
+creating a copy of the server and scaling it and even if we want to make any changes we can do this in the copy, so we dont need to configure it again.
+
+
+
+
+
+
+
